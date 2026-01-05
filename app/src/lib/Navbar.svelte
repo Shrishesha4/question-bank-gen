@@ -77,27 +77,27 @@
       {/if}
     </div>
 
-    <div class="flex items-center gap-2 md:gap-4">
+    <div class="flex items-center gap-1 sm:gap-2 md:gap-4">
       <Button 
         variant="ghost" 
         size="sm" 
         onclick={() => theme.toggleTheme()}
-        class="gap-2 h-9 w-9 p-0 md:h-10 md:w-auto md:px-4"
+        class="h-9 w-9 p-0 shrink-0"
         title={currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       >
         {#if currentTheme === 'dark'}
-          <i class="fas fa-sun"></i>
+          <i class="fas fa-sun text-base"></i>
         {:else}
-          <i class="fas fa-moon"></i>
+          <i class="fas fa-moon text-base"></i>
         {/if}
       </Button>
       {#if isAuthenticated}
-        <Button variant="outline" size="sm" onclick={handleLogout} class="hidden md:inline-flex">Logout</Button>
+        <Button variant="outline" size="sm" onclick={handleLogout} class="hidden md:inline-flex shrink-0">Logout</Button>
         <Button 
           variant="ghost" 
           size="sm" 
           onclick={toggleMobileMenu}
-          class="md:hidden h-9 w-9 p-0"
+          class="md:hidden h-9 w-9 p-0 shrink-0"
           aria-label="Toggle menu"
         >
           <i class="fas {mobileMenuOpen ? 'fa-times' : 'fa-bars'} text-lg"></i>

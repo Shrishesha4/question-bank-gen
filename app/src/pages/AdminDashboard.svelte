@@ -397,8 +397,7 @@
 
 <div class="container mx-auto p-4 md:p-6 max-w-7xl">
   <div class="mb-6">
-    <h1 class="text-3xl font-bold">Admin Dashboard</h1>
-    <p class="text-muted-foreground">Manage users, tasks, and monitor activity</p>
+    <h1 class="text-3xl font-bold">Welcome, Admin</h1>
   </div>
 
   {#if loading}
@@ -447,21 +446,23 @@
     </div>
 
     <!-- Tabs -->
-    <div class="flex gap-2 mb-6 overflow-x-auto pb-2 -mx-2 px-2 md:mx-0 md:px-0">
-      <Button variant={activeTab === "overview" ? "default" : "outline"} onclick={() => activeTab = "overview"}>
-        <i class="fas fa-chart-line mr-2"></i>Overview
+    <div class="flex gap-1 sm:gap-2 mb-6 overflow-x-auto pb-2 -mx-2 px-2 md:mx-0 md:px-0">
+      <Button variant={activeTab === "overview" ? "default" : "outline"} onclick={() => activeTab = "overview"} class="shrink-0">
+        <i class="fas fa-chart-line"></i><span class="hidden sm:inline ml-1">Overview</span>
       </Button>
-      <Button variant={activeTab === "users" ? "default" : "outline"} onclick={() => activeTab = "users"}>
-        <i class="fas fa-users mr-2"></i>Users
+      <Button variant={activeTab === "users" ? "default" : "outline"} onclick={() => activeTab = "users"} class="shrink-0">
+        <i class="fas fa-users"></i><span class="hidden sm:inline ml-1">Users</span>
       </Button>
-      <Button variant={activeTab === "tasks" ? "default" : "outline"} onclick={() => activeTab = "tasks"}>
-        <i class="fas fa-tasks mr-2"></i>Tasks
+      <Button variant={activeTab === "tasks" ? "default" : "outline"} onclick={() => activeTab = "tasks"} class="shrink-0">
+        <i class="fas fa-tasks"></i><span class="hidden sm:inline ml-1">Tasks</span>
       </Button>
-      <Button variant={activeTab === "sessions" ? "default" : "outline"} onclick={() => activeTab = "sessions"}>
-        <i class="fas fa-broadcast-tower mr-2"></i>Live Sessions
-      </Button>      <Button variant={activeTab === "history" ? "default" : "outline"} onclick={() => activeTab = "history"}>
-        <i class="fas fa-history mr-2"></i>History
-      </Button>    </div>
+      <Button variant={activeTab === "sessions" ? "default" : "outline"} onclick={() => activeTab = "sessions"} class="shrink-0">
+        <i class="fas fa-broadcast-tower"></i><span class="hidden sm:inline ml-1">Sessions</span>
+      </Button>
+      <Button variant={activeTab === "history" ? "default" : "outline"} onclick={() => activeTab = "history"} class="shrink-0">
+        <i class="fas fa-history"></i><span class="hidden sm:inline ml-1">History</span>
+      </Button>
+    </div>
 
     <!-- Overview Tab -->
     {#if activeTab === "overview"}
@@ -498,7 +499,7 @@
           <CardHeader>
             <CardTitle class="flex items-center gap-2">
               <i class="fas fa-broadcast-tower text-green-500"></i>
-              Live Sessions
+              Current Sessions
               {#if activeSessions.length > 0}
                 <span class="animate-pulse w-2 h-2 bg-green-500 rounded-full"></span>
               {/if}
@@ -536,8 +537,8 @@
       <Card>
         <CardHeader class="flex flex-row items-center justify-between">
           <CardTitle>Users</CardTitle>
-          <Button onclick={() => { showCreateUserModal = true; createError = ""; }}>
-            <i class="fas fa-plus mr-2"></i>Add User
+          <Button onclick={() => { showCreateUserModal = true; createError = ""; }} class="shrink-0">
+            <i class="fas fa-plus"></i><span class="hidden sm:inline ml-1">Add User</span>
           </Button>
         </CardHeader>
         <CardContent>
@@ -574,11 +575,11 @@
                     <td class="p-3">{u.pending_tasks}</td>
                     <td class="p-3">
                       {#if !u.is_admin}
-                        <div class="flex gap-2">
-                          <Button size="sm" variant="outline" onclick={() => toggleUserActive(u.id)}>
-                            {u.is_active ? 'Block' : 'Unblock'}
+                        <div class="flex gap-1 sm:gap-2">
+                          <Button size="sm" variant="outline" onclick={() => toggleUserActive(u.id)} class="shrink-0">
+                            <i class={`fas ${u.is_active ? 'fa-ban' : 'fa-check'}`}></i><span class="hidden sm:inline ml-1">{u.is_active ? 'Block' : 'Unblock'}</span>
                           </Button>
-                          <Button size="sm" variant="destructive" onclick={() => deleteUser(u.id)}>
+                          <Button size="sm" variant="destructive" onclick={() => deleteUser(u.id)} class="shrink-0">
                             <i class="fas fa-trash"></i>
                           </Button>
                         </div>
@@ -600,8 +601,8 @@
       <Card>
         <CardHeader class="flex flex-row items-center justify-between">
           <CardTitle>Tasks</CardTitle>
-          <Button onclick={() => { showCreateTaskModal = true; createError = ""; }}>
-            <i class="fas fa-plus mr-2"></i>Assign Task
+          <Button onclick={() => { showCreateTaskModal = true; createError = ""; }} class="shrink-0">
+            <i class="fas fa-plus"></i><span class="hidden sm:inline ml-1">Assign Task</span>
           </Button>
         </CardHeader>
         <CardContent>
@@ -626,8 +627,8 @@
                 <div class="flex justify-between items-center text-xs text-muted-foreground">
                   <span>Created by {task.created_by_email} on {formatDate(task.created_at)}</span>
                   {#if task.status === "pending"}
-                    <Button size="sm" variant="destructive" onclick={() => deleteTask(task.id)}>
-                      <i class="fas fa-trash mr-1"></i>Delete
+                    <Button size="sm" variant="destructive" onclick={() => deleteTask(task.id)} class="shrink-0">
+                      <i class="fas fa-trash"></i><span class="hidden sm:inline ml-1">Delete</span>
                     </Button>
                   {/if}
                 </div>
@@ -640,13 +641,13 @@
       </Card>
     {/if}
 
-    <!-- Live Sessions Tab -->
+    <!-- Current Sessions Tab -->
     {#if activeTab === "sessions"}
       <Card>
         <CardHeader>
           <CardTitle class="flex items-center gap-2">
             <i class="fas fa-broadcast-tower"></i>
-            Live Generation Sessions
+            Current Generation Sessions
             {#if activeSessions.length > 0}
               <span class="animate-pulse w-3 h-3 bg-green-500 rounded-full"></span>
             {/if}
@@ -726,11 +727,11 @@
                       </div>
                     </div>
                     <div class="flex gap-2">
-                      <Button size="sm" variant="outline" onclick={() => viewHistorySet(historySet.id)}>
-                        <i class="fas fa-eye mr-1"></i>View
+                      <Button size="sm" variant="outline" onclick={() => viewHistorySet(historySet.id)} class="shrink-0">
+                        <i class="fas fa-eye"></i><span class="hidden sm:inline ml-1">View</span>
                       </Button>
-                      <Button size="sm" variant="destructive" onclick={() => deleteHistorySet(historySet.id)}>
-                        <i class="fas fa-trash mr-1"></i>Delete
+                      <Button size="sm" variant="destructive" onclick={() => deleteHistorySet(historySet.id)} class="shrink-0">
+                        <i class="fas fa-trash"></i><span class="hidden sm:inline ml-1">Delete</span>
                       </Button>
                     </div>
                   </div>
@@ -910,8 +911,8 @@
             {/each}
           </div>
           <div class="flex gap-2 justify-end mt-6 pt-4 border-t">
-            <Button variant="destructive" onclick={() => deleteHistorySet(selectedHistorySet.id)}>
-              <i class="fas fa-trash mr-2"></i>Delete This Set
+            <Button variant="destructive" onclick={() => deleteHistorySet(selectedHistorySet.id)} class="shrink-0">
+              <i class="fas fa-trash icon-left"></i><span class="hidden sm:inline">Delete This Set</span><span class="sm:hidden">Delete</span>
             </Button>
             <Button variant="outline" onclick={() => { showHistoryDetailModal = false; selectedHistorySet = null; }}>
               Close

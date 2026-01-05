@@ -197,8 +197,8 @@
                   <span><i class="fas fa-tachometer-alt mr-1"></i>{task.difficulty}</span>
                 </div>
                 {#if task.status === "pending"}
-                  <Button size="sm" onclick={() => startTask(task)}>
-                    <i class="fas fa-play mr-1"></i>Start Task
+                  <Button size="sm" onclick={() => startTask(task)} class="shrink-0">
+                    <i class="fas fa-play"></i><span class="hidden sm:inline ml-1">Start Task</span>
                   </Button>
                 {:else if task.status === "completed"}
                   <span class="text-sm text-green-500">

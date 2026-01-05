@@ -602,12 +602,12 @@
               <Button 
                 type="button"
                 variant="outline"
-                class="w-full h-10 text-base font-semibold"
+                class="w-full h-10 text-sm sm:text-base font-semibold"
                 onclick={clearAllData}
                 disabled={loading}
               >
-                <i class="fas fa-trash mr-2"></i>
-                Clear All Data
+                <i class="fas fa-trash icon-left"></i>
+                <span class="hidden sm:inline">Clear All Data</span><span class="sm:inline md:hidden">Clear All</span>
               </Button>
             {/if}
 
@@ -710,12 +710,12 @@
               </div>
             </div>
             {#if expandedExports.all}
-              <div class="mt-3 p-3 md:p-4 bg-muted rounded-lg border border-muted-foreground/20 flex flex-wrap gap-2">
-                    <Button size="sm" variant="secondary" onclick={downloadAllAsJSON}>
-                      <i class="fas fa-download mr-1"></i>JSON
+              <div class="mt-3 p-2 sm:p-3 md:p-4 bg-muted rounded-lg border border-muted-foreground/20 flex flex-wrap gap-1.5 sm:gap-2">
+                    <Button size="sm" variant="secondary" onclick={downloadAllAsJSON} class="shrink-0">
+                      <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">JSON</span>
                     </Button>
-                    <Button size="sm" variant="secondary" onclick={downloadAllAsCSV}>
-                      <i class="fas fa-download mr-1"></i>CSV
+                    <Button size="sm" variant="secondary" onclick={downloadAllAsCSV} class="shrink-0">
+                      <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">CSV</span>
                     </Button>
                     <Button size="sm" variant="secondary" onclick={() => {
                       const doc = new jsPDF();
@@ -801,10 +801,10 @@
                       
                       doc.save(`${topic.replace(/\s+/g, '_')}_all_sets.pdf`);
                     }}>
-                      <i class="fas fa-download mr-1"></i>PDF
+                      <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">PDF</span>
                     </Button>
-                    <Button size="sm" variant="secondary" onclick={downloadAllAsText}>
-                      <i class="fas fa-download mr-1"></i>TXT
+                    <Button size="sm" variant="secondary" onclick={downloadAllAsText} class="shrink-0">
+                      <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">TXT</span>
                     </Button>
                   </div>
                 {/if}
@@ -934,29 +934,29 @@
                     </div>
                   </div>
                   {#if expandedExports.sets[sIdx]?.all}
-                    <div class="mt-3 p-3 bg-muted rounded border border-muted-foreground/20 flex flex-wrap gap-2">
-                      <Button size="sm" variant="secondary" onclick={() => exportSet(questions[0].set_id, 'json')}>
-                        <i class="fas fa-download mr-1"></i>JSON
+                    <div class="mt-3 p-2 sm:p-3 bg-muted rounded border border-muted-foreground/20 flex flex-wrap gap-1.5 sm:gap-2">
+                      <Button size="sm" variant="secondary" onclick={() => exportSet(questions[0].set_id, 'json')} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">JSON</span>
                       </Button>
-                      <Button size="sm" variant="secondary" onclick={() => exportSet(questions[0].set_id, 'csv')}>
-                        <i class="fas fa-download mr-1"></i>CSV
+                      <Button size="sm" variant="secondary" onclick={() => exportSet(questions[0].set_id, 'csv')} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">CSV</span>
                       </Button>
-                      <Button size="sm" variant="secondary" onclick={() => exportSet(questions[0].set_id, 'pdf')}>
-                        <i class="fas fa-download mr-1"></i>PDF
+                      <Button size="sm" variant="secondary" onclick={() => exportSet(questions[0].set_id, 'pdf')} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">PDF</span>
                       </Button>
-                      <Button size="sm" variant="secondary" onclick={() => downloadSetAsText(questions[0].set_id, sIdx)}>
-                        <i class="fas fa-download mr-1"></i>TXT
+                      <Button size="sm" variant="secondary" onclick={() => downloadSetAsText(questions[0].set_id, sIdx)} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">TXT</span>
                       </Button>
                     </div>
                   {/if}
                   {#if expandedExports.sets[sIdx]?.questionsOnly}
-                    <div class="mt-3 p-3 bg-muted rounded border border-muted-foreground/20 flex flex-wrap gap-2">
+                    <div class="mt-3 p-2 sm:p-3 bg-muted rounded border border-muted-foreground/20 flex flex-wrap gap-1.5 sm:gap-2">
                       <Button size="sm" variant="secondary" onclick={() => {
                         const data = questions.map(q => ({ question: q.description, options: q.options }));
                         const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                         downloadFile(blob, `${topic.replace(/\s+/g, '_')}_set_${sIdx + 1}_questions.json`);
-                      }}>
-                        <i class="fas fa-download mr-1"></i>JSON
+                      }} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">JSON</span>
                       </Button>
                       <Button size="sm" variant="secondary" onclick={() => {
                         let csv = 'Question,Option A,Option B,Option C,Option D\n';
@@ -966,8 +966,8 @@
                         });
                         const blob = new Blob([csv], { type: 'text/csv' });
                         downloadFile(blob, `${topic.replace(/\s+/g, '_')}_set_${sIdx + 1}_questions.csv`);
-                      }}>
-                        <i class="fas fa-download mr-1"></i>CSV
+                      }} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">CSV</span>
                       </Button>
                       <Button size="sm" variant="secondary" onclick={() => {
                         const doc = new jsPDF();
@@ -1003,11 +1003,11 @@
                         });
                         
                         doc.save(`${topic.replace(/\s+/g, '_')}_set_${sIdx + 1}_questions.pdf`);
-                      }}>
-                        <i class="fas fa-download mr-1"></i>PDF
+                      }} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">PDF</span>
                       </Button>
-                      <Button size="sm" variant="secondary" onclick={() => downloadQuestionsOnlyAsText(sIdx)}>
-                        <i class="fas fa-download mr-1"></i>TXT
+                      <Button size="sm" variant="secondary" onclick={() => downloadQuestionsOnlyAsText(sIdx)} class="shrink-0">
+                        <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">TXT</span>
                       </Button>
                     </div>
                   {/if}

@@ -385,8 +385,6 @@
           {selectedGroup.topic}
         {:else if currentView === "questions"}
           Set #{selectedSet.id}
-        {:else}
-          Question Details
         {/if}
       </h1>
       
@@ -600,34 +598,34 @@
               </Button>
             </div>
             {#if expandedExports.all}
-              <div class="p-3 bg-background rounded border border-muted-foreground/20 flex flex-wrap gap-2">
-                <Button size="sm" variant="secondary" onclick={downloadSetAsJson}>
-                  <i class="fas fa-download mr-1"></i>JSON
+              <div class="p-2 sm:p-3 bg-background rounded border border-muted-foreground/20 flex flex-wrap gap-1.5 sm:gap-2">
+                <Button size="sm" variant="secondary" onclick={downloadSetAsJson} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">JSON</span>
                 </Button>
-                <Button size="sm" variant="secondary" onclick={downloadSetAsCsv}>
-                  <i class="fas fa-download mr-1"></i>CSV
+                <Button size="sm" variant="secondary" onclick={downloadSetAsCsv} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">CSV</span>
                 </Button>
-                <Button size="sm" variant="secondary" onclick={downloadSetAsPdf}>
-                  <i class="fas fa-download mr-1"></i>PDF
+                <Button size="sm" variant="secondary" onclick={downloadSetAsPdf} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">PDF</span>
                 </Button>
-                <Button size="sm" variant="secondary" onclick={downloadSetAsText}>
-                  <i class="fas fa-download mr-1"></i>TXT
+                <Button size="sm" variant="secondary" onclick={downloadSetAsText} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">TXT</span>
                 </Button>
               </div>
             {/if}
             {#if expandedExports.questionsOnly}
-              <div class="p-3 bg-background rounded border border-muted-foreground/20 flex flex-wrap gap-2">
-                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsJson}>
-                  <i class="fas fa-download mr-1"></i>JSON
+              <div class="p-2 sm:p-3 bg-background rounded border border-muted-foreground/20 flex flex-wrap gap-1.5 sm:gap-2">
+                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsJson} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">JSON</span>
                 </Button>
-                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsCsv}>
-                  <i class="fas fa-download mr-1"></i>CSV
+                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsCsv} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">CSV</span>
                 </Button>
-                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsPdf}>
-                  <i class="fas fa-download mr-1"></i>PDF
+                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsPdf} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">PDF</span>
                 </Button>
-                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsText}>
-                  <i class="fas fa-download mr-1"></i>TXT
+                <Button size="sm" variant="secondary" onclick={downloadQuestionsOnlyAsText} class="shrink-0">
+                  <i class="fas fa-download"></i><span class="hidden sm:inline ml-1">TXT</span>
                 </Button>
               </div>
             {/if}
@@ -635,7 +633,6 @@
         </CardContent>
       </Card>
 
-    <!-- Question Detail View -->
     {:else if currentView === "question_detail" && selectedQuestion}
       <Card class="border-2 border-primary/20">
         <CardContent class="pt-8 pb-8">
